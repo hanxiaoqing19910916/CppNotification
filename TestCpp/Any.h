@@ -16,8 +16,7 @@
 
 namespace hx {
     
-    struct Any
-    {
+    struct Any {
     public:
         Any(void) : m_tpIndex(std::type_index(typeid(void))) {}
         Any(const Any& that) : m_ptr(that.Clone()), m_tpIndex(that.m_tpIndex) {}
@@ -29,13 +28,11 @@ namespace hx {
         
         bool IsNull() const { return !bool(m_ptr); }
         
-        template<class U> bool Is() const
-        {
+        template<class U> bool Is() const {
             return m_tpIndex == std::type_index(typeid(U));
         }
         
-        template<class U> U& AnyCast()
-        {
+        template<class U> U& AnyCast() {
             if (!Is<U>()) {
                 throw std::bad_cast();
             }
@@ -43,10 +40,7 @@ namespace hx {
             return dervied->m_value;
         }
         
-
-        
-        Any& operator=(const Any& a)
-        {
+        Any& operator=(const Any& a) {
             if (m_ptr == a.m_ptr) { return *this; }
             
             m_ptr = a.Clone();
@@ -54,35 +48,28 @@ namespace hx {
             return *this;
         }
         
-        
     private:
-        struct Base;
-        
-        std::type_index m_tpIndex;
-        std::unique_ptr<Base> m_ptr;
-        
-        struct Base
-        {
+        struct Base {
             virtual ~Base() {}
             virtual std::unique_ptr<Base> Clone() const = 0;
         };
+
+        std::type_index m_tpIndex;
+        std::unique_ptr<Base> m_ptr;
         
         template<typename T>
-        struct Derived : Base
-        {
+        struct Derived : Base {
             template<typename U>
             Derived(U && value) : m_value(std::forward<U>(value)) {}
             
-            std::unique_ptr<Base> Clone() const
-            {
+            std::unique_ptr<Base> Clone() const {
                 return std::unique_ptr<Base>(new Derived<T>(m_value));
             }
             
             T m_value;
         };
         
-        std::unique_ptr<Base> Clone() const
-        {
+        std::unique_ptr<Base> Clone() const {
             if (m_ptr != nullptr)  {
                 return m_ptr->Clone();
             }

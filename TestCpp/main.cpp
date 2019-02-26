@@ -26,43 +26,14 @@ void testAny() {
 }
 
 
-MessageBus g_bus;
 string topic = "dds";
-struct Subject {
-    Subject()
-    {
-        m_name = "Subject";
-    }
-    void SendReq(const string& topic)
-    {
-        g_bus.SendReq<void, int, hx::Any>(50, this, topic);
-    }
-    string m_name;
-};
 
-
-struct Car {
-    Car() {
-        g_bus.Attach([this](int speed, hx::Any any) {
-            drive(speed);
-            
-            
-        }, topic);
-    }
-    void drive(int speed)
-    {
-        cout << "Car drive" << speed << endl;
-    }
-};
 
 struct Bus {
     Bus()
     {
-       // g_bus.Attach([this](int speed) { drive(speed); }, topic);
         NotificationCenter *notic = NotificationCenter::defaultCenter();
-        notic->addObserver(this, std::bind(&Bus::drive, this,std::placeholders::_1), topic);
-        
-//      notic->addObserver(this, Bus::drive, topic);
+        notic->addObserver(this, &Bus::drive, topic);
     }
     void drive(Notification& noti)
     {
@@ -72,27 +43,13 @@ struct Bus {
 
 
 
-void testMessageBus()
-{
-    Car car;
-    Bus bus;
-    
-    Subject subject;
-    subject.SendReq(topic);
-}
-
 
 
 void testNotificationCenter()
 {
-    Car car;
-    
+
     Bus *bus = new Bus();
     NotificationCenter *notic = NotificationCenter::defaultCenter();
-    notic = NotificationCenter::defaultCenter();
-    
-
-    notic->addObserver(bus, std::bind(&Bus::drive, bus,std::placeholders::_1), topic);
     notic->postNotification(topic, 1,2);
     
 }

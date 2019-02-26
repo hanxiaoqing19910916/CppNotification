@@ -12,15 +12,13 @@ namespace hx {
     
     NotificationCenter* NotificationCenter::m_center = nullptr;
 
-    NotificationCenter* NotificationCenter::defaultCenter()
-    {
+    NotificationCenter* NotificationCenter::defaultCenter()  {
         if (m_center == nullptr) {
             m_center = new NotificationCenter();
         }
         return m_center;
     }
     NotificationCenter::NotificationCenter() {
-        
     }
 }
 

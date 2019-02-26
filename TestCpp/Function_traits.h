@@ -17,8 +17,7 @@ namespace hx {
     struct function_traits;
     
     template<typename Ret, typename... Args>
-    struct function_traits<Ret(Args...)>
-    {
+    struct function_traits<Ret(Args...)> {
     public:
         enum { arity = sizeof...(Args) };
         typedef Ret function_type(Args...);
@@ -28,15 +27,13 @@ namespace hx {
         typedef Ret(*pointer)(Args ...);
         
         template<size_t I>
-        struct args
-        {
+        struct args {
             static_assert(I < arity, "index is out of range. index must less than size of Args.");
             using type = typename std::tuple_element<I, std::tuple<Args...>>::type;
         };
         
         template<size_t N>
         using arg_type = typename std::tuple_element<N, std::tuple<Args...>>::type;
-        
     };
     
     template<typename Ret, typename... Args>
@@ -59,20 +56,17 @@ namespace hx {
     struct function_traits: function_traits<decltype(&Callable::operator())> {};
     
     template<typename Function>
-    typename function_traits<Function>::stl_function_type to_function(const Function& lamdba)
-    {
+    typename function_traits<Function>::stl_function_type to_function(const Function& lamdba) {
         return static_cast<typename function_traits<Function>::stl_function_type>(lamdba);
     }
     
     template<typename Function>
-    typename function_traits<Function>::stl_function_type to_function(const Function&& lamdba)
-    {
+    typename function_traits<Function>::stl_function_type to_function(const Function&& lamdba) {
         return static_cast<typename function_traits<Function>::stl_function_type> (std::forward<Function>(lamdba));
     }
     
     template<typename Function>
-    typename function_traits<Function>::pointer to_function_pointer(const Function& lamdba)
-    {
+    typename function_traits<Function>::pointer to_function_pointer(const Function& lamdba) {
          return static_cast<typename function_traits<Function>::pointer>(lamdba);
     }
 }
