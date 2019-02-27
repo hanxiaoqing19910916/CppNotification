@@ -12,6 +12,48 @@
 #include "Any.h"
 #include "MessageBus.h"
 
+/*
+ NotificationCenter 使用说明:
+ 
+ string notiName = "oneBigThing"; // 通知名字
+ struct Person {
+     Person() {
+         // 添加要监听的通知名字,以及监听对象以及回调Function
+         NotificationCenter *notic = NotificationCenter::defaultCenter();
+ 
+         //注意添加某个类的实例方法的时候,要用(&+类名+方法名形式),如下: &Person::recieved
+         notic->addObserver(this, &Person::recieved, notiName);
+     }
+ 
+     //回调函数的参数被限定死,只能是一个Notification&类型
+     void recieved(Notification& noti) {
+         cout << "recieved" << endl;
+ 
+         // noti.name() 获取当前通知名字
+         cout << noti.name() << endl;
+ 
+         //发通知的时候,可以携带一个任意类型的数据,用于传递通知过程的一些上下文信息
+         //由于设计了一个Any的万能容器,可接受任意类型的传值,因此在取出的使用要用As<类型>还原.
+         cout << noti.userInfo().As<int>() << endl;
+     }
+ 
+     ~Person() { }
+ };
+ 
+ 
+ void testNotificationCenter()
+ {
+     Person p;
+ 
+     NotificationCenter *notic = NotificationCenter::defaultCenter();
+     //发出通知,第一个参数是通知名字,第二个参数可以传一个任意类型的数据,用于同步给监听者
+     notic->postNotification(notiName, 1);
+ }
+
+*/
+
+
+
 using namespace std;
 
 namespace hx {
@@ -65,4 +107,4 @@ namespace hx {
     };
     
 }
-#endif /* HXNotificationCenter_h */
+#endif /* NotificationCenter_h */

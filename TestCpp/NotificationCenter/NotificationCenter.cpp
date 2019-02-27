@@ -1,5 +1,5 @@
 //
-//  HXNotificationCenter.cpp
+//  NotificationCenter.cpp
 //  TestCpp
 //
 //  Created by hanxiaoqing on 2019/2/19.
@@ -11,7 +11,7 @@
 namespace hx {
     
     NotificationCenter* NotificationCenter::m_center = nullptr;
-
+    
     NotificationCenter* NotificationCenter::defaultCenter()  {
         if (m_center == nullptr) {
             m_center = new NotificationCenter();

@@ -40,7 +40,7 @@ void testAny() {
     n = "world";
     //n.As<int>(); //can not cast int to string
     Any n1 = 1;
-    n1.As<string>(); //true
+    n1.As<int>(); //true
     
     vector<string> ss = {"1", "2", "3"};
     Any n3 = ss;
@@ -68,7 +68,7 @@ struct Car {
 struct Bus {
     
     void make() {
-         cout << "make Bus" << endl;
+        cout << "make Bus" << endl;
     }
     
     Bus() {
@@ -81,7 +81,7 @@ struct Bus {
     }
     
     Bus(const Bus&& b) {
-         cout << "Bus(const Bus&& b)" << endl;
+        cout << "Bus(const Bus&& b)" << endl;
     }
     
     Bus& operator=(Bus&& b)
@@ -89,8 +89,8 @@ struct Bus {
         cout << "Move Assignment operator" << endl;
         return *this;
     }
-
-   
+    
+    
     void drive(Notification& noti) {
         cout << this << endl;
         vector<string> ss = noti.userInfo().As<vector<string>>();
@@ -129,21 +129,29 @@ void testRef(Bus&& bus)
     bus.make();
 }
 
+namespace TS {
+    template <class _Tp, _Tp __v>
+    struct _LIBCPP_TEMPLATE_VIS integral_constant
+    {
+        static _LIBCPP_CONSTEXPR const _Tp      value = __v;
+        typedef _Tp               value_type;
+        typedef integral_constant type;
+        _LIBCPP_INLINE_VISIBILITY
+        _LIBCPP_CONSTEXPR operator value_type() const _NOEXCEPT {return value;}
+#if _LIBCPP_STD_VER > 11
+        _LIBCPP_INLINE_VISIBILITY
+        constexpr value_type operator ()() const _NOEXCEPT {return value;}
+#endif
+    };
+}
 
 
 int main(int argc, const char * argv[])
 {
-//    Bus b;
-
-//  testMessageBus();
-  testAny();
+    testAny();
     
     TTS<void, int> ts;
     TTS<int, void> ts1;
-    
-    
-    testNotificationCenter();
-    
     
     return 0;
 }
