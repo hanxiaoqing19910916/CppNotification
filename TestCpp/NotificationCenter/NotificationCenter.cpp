@@ -6,7 +6,7 @@
 //  Copyright © 2019 sdk. All rights reserved.
 //
 
-#include "HXNotificationCenter.h"
+#include "NotificationCenter.h"
 
 namespace hx {
     

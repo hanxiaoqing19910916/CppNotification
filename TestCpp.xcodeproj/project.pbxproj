@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8A6F17C9221BCFE2002D40F2 /* HXNotificationCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F17C7221BCFE2002D40F2 /* HXNotificationCenter.cpp */; };
+		8A6F17C9221BCFE2002D40F2 /* NotificationCenter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F17C7221BCFE2002D40F2 /* NotificationCenter.cpp */; };
 		8AF65CB522043ADD00EDEB46 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8AF65CB422043ADD00EDEB46 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -25,8 +25,8 @@
 
 /* Begin PBXFileReference section */
 		8A0A932C221CF68A007AA10D /* Any.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Any.h; sourceTree = "<group>"; };
-		8A6F17C7221BCFE2002D40F2 /* HXNotificationCenter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HXNotificationCenter.cpp; sourceTree = "<group>"; };
-		8A6F17C8221BCFE2002D40F2 /* HXNotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HXNotificationCenter.h; sourceTree = "<group>"; };
+		8A6F17C7221BCFE2002D40F2 /* NotificationCenter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NotificationCenter.cpp; sourceTree = "<group>"; };
+		8A6F17C8221BCFE2002D40F2 /* NotificationCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
 		8A7A1C48221FC3BA0068BEFF /* Function_traits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Function_traits.h; sourceTree = "<group>"; };
 		8A9D58B92223C1800040DB0E /* MessageBus.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MessageBus.h; sourceTree = "<group>"; };
 		8AF65CB122043ADD00EDEB46 /* TestCpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TestCpp; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +44,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A6D7DEB22265E80004EA126 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				8A0A932C221CF68A007AA10D /* Any.h */,
+				8A7A1C48221FC3BA0068BEFF /* Function_traits.h */,
+				8A9D58B92223C1800040DB0E /* MessageBus.h */,
+				8A6F17C8221BCFE2002D40F2 /* NotificationCenter.h */,
+				8A6F17C7221BCFE2002D40F2 /* NotificationCenter.cpp */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
 		8AF65CA822043ADD00EDEB46 = {
 			isa = PBXGroup;
 			children = (
@@ -63,12 +75,8 @@
 		8AF65CB322043ADD00EDEB46 /* TestCpp */ = {
 			isa = PBXGroup;
 			children = (
+				8A6D7DEB22265E80004EA126 /* NotificationCenter */,
 				8AF65CB422043ADD00EDEB46 /* main.cpp */,
-				8A0A932C221CF68A007AA10D /* Any.h */,
-				8A7A1C48221FC3BA0068BEFF /* Function_traits.h */,
-				8A9D58B92223C1800040DB0E /* MessageBus.h */,
-				8A6F17C8221BCFE2002D40F2 /* HXNotificationCenter.h */,
-				8A6F17C7221BCFE2002D40F2 /* HXNotificationCenter.cpp */,
 			);
 			path = TestCpp;
 			sourceTree = "<group>";
@@ -130,7 +138,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AF65CB522043ADD00EDEB46 /* main.cpp in Sources */,
-				8A6F17C9221BCFE2002D40F2 /* HXNotificationCenter.cpp in Sources */,
+				8A6F17C9221BCFE2002D40F2 /* NotificationCenter.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <memory>
+#include <iostream>
 #include <typeindex>
 
 
@@ -32,8 +33,9 @@ namespace hx {
             return m_tpIndex == std::type_index(typeid(U));
         }
         
-        template<class U> U& AnyCast() {
+        template<class U> U& As() {
             if (!Is<U>()) {
+                std::cout << "can not cast " << typeid(U).name() << " to " << m_tpIndex.name() << std::endl;
                 throw std::bad_cast();
             }
             auto dervied = dynamic_cast<Derived<U> *> (m_ptr.get());

@@ -32,7 +32,7 @@ public:
         
         auto range = m_map.equal_range(strMsgType);
         for (Iterater it = range.first; it != range.second; ++it) {
-            auto f = it->second.AnyCast<function_type>();
+            auto f = it->second.As<function_type>();
             f();
         }
     }
@@ -44,7 +44,7 @@ public:
         
         auto range = m_map.equal_range(strMsgType);
         for (Iterater it = range.first; it != range.second; ++it) {
-            auto f = it->second.AnyCast<function_type>();
+            auto f = it->second.As<function_type>();
             f(std::forward<Args>(args) ...);
         }
     }
@@ -60,7 +60,7 @@ public:
     
 private:
     std::multimap<string, hx::Any> m_map;
-    typedef std:: multimap<string, hx::Any>::iterator Iterater;
+    typedef std::multimap<string, hx::Any>::iterator Iterater;
     
     template<typename F>
     void Add(const string& strTopic, F&& f)  {
